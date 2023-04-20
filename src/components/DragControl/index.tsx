@@ -1,10 +1,30 @@
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import {
+  motion,
+  MotionValue,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 import { useRouter } from "next/router";
+import {
+  getDivisorFromRef,
+  getDragResult,
+} from "@/components/DragControl/utils";
 
 const DragControl = () => {
   const constraintsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // @ts-ignore
+  const content: MotionValue<string> = useTransform(
+    [x, y],
+    ([inputX, inputY]: number[]) => {
+      const divisor = getDivisorFromRef(constraintsRef);
+      return getDragResult(inputX, inputY, divisor).label;
+    }
+  );
 
   return (
     <motion.div
@@ -17,38 +37,22 @@ const DragControl = () => {
       </span>
       <span className="absolute bottom-4 text-sm font-bold">My CV</span>
       <motion.div
-        className="border border-green-500 rounded-full w-1/2 aspect-square flex justify-center items-center text-sm italic"
+        style={{ x, y }}
+        className="rounded-full w-1/2 aspect-square flex justify-center items-center text-xs text-center italic bg-green-600 px-2"
         drag
         dragSnapToOrigin
         dragElastic={0.01}
         dragConstraints={constraintsRef}
-        whileDrag={{ backdropFilter: "invert(100%)", color: "transparent" }}
         onDragEnd={(event, info) => {
           if (!constraintsRef || !constraintsRef.current) {
             return;
           }
           const { x, y } = info.offset;
-          const { clientWidth } = constraintsRef!.current;
-          const squareHalfSide = clientWidth / 4;
-          console.log({ x, y, squareHalfSide });
-          if (x > squareHalfSide) {
-            router.push("/games").then();
-            return;
-          }
-          if (x < -squareHalfSide) {
-            return;
-          }
-          if (y > squareHalfSide) {
-            router.push("/cv").then();
-            return;
-          }
-          if (y < -squareHalfSide) {
-            router.push("/about").then();
-            return;
-          }
+          const divisor = getDivisorFromRef(constraintsRef);
+          router.push(getDragResult(x, y, divisor).url).then();
         }}
       >
-        Drag to navigate
+        {content}
       </motion.div>
     </motion.div>
   );
