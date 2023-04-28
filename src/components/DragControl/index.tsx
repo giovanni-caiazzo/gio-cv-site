@@ -47,7 +47,7 @@ const DragControl = () => {
       </Link>
       <motion.div
         style={{ x, y }}
-        className="rounded-full w-1/2 aspect-square flex justify-center items-center text-xs text-center italic bg-green-600 px-2"
+        className="rounded-full w-1/2 aspect-square flex justify-center items-center text-xs text-center italic bg-green-600 px-2 cursor-grab"
         drag
         dragSnapToOrigin
         dragElastic={0.01}

@@ -17,15 +17,15 @@ const BackToHome = ({ className }: BackToHomeProps) => {
       <Link href="/" className={`hover:text-green-600 active:text-black`}>
         <FiArrowLeft size="1.2em" />
       </Link>
-      <div className="bg-white w-20 rounded px-2 py-1 flex justify-end overflow-hidden">
+      <div className="bg-gray-200 w-20 rounded px-2 py-1 flex justify-end overflow-hidden">
         <motion.div
           drag="x"
           dragConstraints={constraintsRef}
           dragSnapToOrigin
           dragElastic={0.01}
-          className="bg-green-300 rounded p-1 cursor-grab"
-          animate={{ x: [null, -5, 0] }}
-          transition={{ repeat: 3 }}
+          className="bg-green-400 rounded p-1 cursor-grab"
+          animate={{ x: [null, -5, 0, -5, 0, -5, 0] }}
+          transition={{ repeat: Infinity, repeatDelay: 3, duration: 4 }}
           onDragEnd={(event, info) => {
             if (!constraintsRef || !constraintsRef.current) {
               return;

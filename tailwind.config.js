@@ -3,10 +3,14 @@ module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/layouts/**/*.{js,ts,jsx,tsx}",
     "./src/app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "320px",
+      },
       spacing: {
         "3/4": "75%",
         "2/3": "67%",
