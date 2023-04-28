@@ -30,7 +30,8 @@ const DragControl = () => {
 
   return (
     <motion.div
-      className="w-3/4 sm:w-1/2 md:w-1/3 lg:w-1/5 aspect-square flex justify-center items-center rounded relative"
+      className="w-full xs:w-3/4 aspect-square flex justify-center items-center rounded relative"
+      style={{ maxWidth: "500px" }}
       ref={constraintsRef}
     >
       <Link href={ABOUT_URL} className="absolute top-4 text-sm font-bold">
@@ -47,7 +48,7 @@ const DragControl = () => {
       </Link>
       <motion.div
         style={{ x, y }}
-        className="rounded-full w-1/2 aspect-square flex justify-center items-center text-xs text-center italic bg-green-600 px-2 cursor-grab"
+        className="rounded-full w-1/2 aspect-square flex justify-center items-center text-xs text-center italic bg-green-500 px-2 cursor-grab"
         drag
         dragSnapToOrigin
         dragElastic={0.01}

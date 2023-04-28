@@ -23,7 +23,7 @@ const BackToHome = ({ className }: BackToHomeProps) => {
           dragConstraints={constraintsRef}
           dragSnapToOrigin
           dragElastic={0.01}
-          className="bg-green-400 rounded p-1 cursor-grab"
+          className="bg-green-500 rounded p-1 cursor-grab"
           animate={{ x: [null, -5, 0, -5, 0, -5, 0] }}
           transition={{ repeat: Infinity, repeatDelay: 3, duration: 4 }}
           onDragEnd={(event, info) => {
