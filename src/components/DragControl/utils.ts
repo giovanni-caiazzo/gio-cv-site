@@ -1,4 +1,5 @@
 import { RefObject } from "react";
+import { ABOUT_URL, CV_URL, GAMES_URL } from "@/consts";
 
 const DRAG_THRESHOLD = 0.7;
 const EMPTY_THRESHOLD = 0.1;
@@ -18,15 +19,15 @@ export const endpoint_map = {
     label: "",
   },
   [DRAG_ENDPOINT.MINI_GAMES]: {
-    url: "/games",
+    url: GAMES_URL,
     label: "Mini games",
   },
   [DRAG_ENDPOINT.CV]: {
-    url: "/cv",
+    url: CV_URL,
     label: "My CV",
   },
   [DRAG_ENDPOINT.ABOUT]: {
-    url: "/about",
+    url: ABOUT_URL,
     label: "About me",
   },
   [DRAG_ENDPOINT.PLACEHOLDER]: {

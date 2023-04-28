@@ -10,6 +10,8 @@ import {
   getDivisorFromRef,
   getDragResult,
 } from "@/components/DragControl/utils";
+import Link from "next/link";
+import { ABOUT_URL, CV_URL, GAMES_URL } from "@/consts";
 
 const DragControl = () => {
   const constraintsRef = useRef<HTMLDivElement>(null);
@@ -31,11 +33,18 @@ const DragControl = () => {
       className="w-3/4 sm:w-1/2 md:w-1/3 lg:w-1/5 aspect-square flex justify-center items-center rounded relative"
       ref={constraintsRef}
     >
-      <span className="absolute top-4 text-sm font-bold">About me</span>
-      <span className="absolute transform rotate-90 origin-center -right-4 text-sm font-bold">
+      <Link href={ABOUT_URL} className="absolute top-4 text-sm font-bold">
+        About me
+      </Link>
+      <Link
+        href={GAMES_URL}
+        className="absolute transform rotate-90 origin-center -right-4 text-sm font-bold"
+      >
         Mini games
-      </span>
-      <span className="absolute bottom-4 text-sm font-bold">My CV</span>
+      </Link>
+      <Link href={CV_URL} className="absolute bottom-4 text-sm font-bold">
+        My CV
+      </Link>
       <motion.div
         style={{ x, y }}
         className="rounded-full w-1/2 aspect-square flex justify-center items-center text-xs text-center italic bg-green-600 px-2"
